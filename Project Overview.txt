@@ -1,0 +1,108 @@
+Project Overview 
+
+1.Analytics Module 
+Real Estate Domain 
+
+website 
+toggle menu
+Analytics Module 
+select city 
+Spatial Analysis 
+Map open Sector and Average of Price 
+Color scale 
+
+
+Price Distribution 
+Box plot for each sector 
+Scatter plot Sq foot and price of flat 
+Pie chart of 1bhk,2bhk,3bhk
+
+
+Insights Module 
+Machine learning regression moduel feature selection 
+
+how price vary 
+
+Price Prediction Module 
+range will be given in a particular area 
+
+Recommender System 
+click on Society
+Similar society
+
+Helps in analytical end product 
+
+
+Deploy on AWS
+
+
+1.Data Gathering 
+99acres 
+3000 flats data available 
+
+
+flats.csv
+flats-apartment.ipynb  --> scrapping code
+
+independent-house 
+
+residential-land 
+
+real_estate_data --> recommended System
+
+
+streamlit 
+
+
+Project Roadmap
+project planning 
+Data gathering {done}
+Data Preprocessing
+
+EDA do on owm
+
+feature engineering 
+regression model 
+insights module 
+Recommender System
+Deployment 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Points of Improvement
+12 August 2023
+13:03
+1.
+2.
+3.
+4.
+5.
+6.
+Add mor
+Build for any other city
+n ependent Floors and Residential Plots
+Add Commercial Properties
+Improvement of Predictive Modules with better Algorithms
+Add more features 
+ 
+
+
