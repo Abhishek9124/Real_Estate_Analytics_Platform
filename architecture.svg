@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#065f46"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <linearGradient id="g3" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#7c2d12"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="g4" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#581c87"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <linearGradient id="g5" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#831843"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <style>
+      .title { font-size: 26px; font-weight: 700; fill: #0f172a; }
+      .stage { font-size: 16px; font-weight: 700; fill: #fff; }
+      .item  { font-size: 12px; fill: #fff; }
+      .lbl   { font-size: 13px; font-weight: 600; fill: #1e293b; }
+      .ln    { stroke: #475569; stroke-width: 2; fill: none; }
+    </style>
+  </defs>
+
+  <rect width="1100" height="720" fill="#f8fafc"/>
+  <text x="550" y="40" text-anchor="middle" class="title">Real Estate Analytics Platform — Architecture</text>
+  <text x="550" y="62" text-anchor="middle" font-size="14" fill="#64748b">Gurgaon Property Price Prediction · Insights · Recommender</text>
+
+  <!-- Stage 1: Data Sources -->
+  <rect x="40" y="100" width="200" height="130" rx="12" fill="url(#g1)"/>
+  <text x="140" y="128" text-anchor="middle" class="stage">1. Data Sources</text>
+  <text x="140" y="155" text-anchor="middle" class="item">99acres.com (scraped)</text>
+  <text x="140" y="175" text-anchor="middle" class="item">flats.csv · houses.csv</text>
+  <text x="140" y="195" text-anchor="middle" class="item">appartments.csv</text>
+  <text x="140" y="215" text-anchor="middle" class="item">latlong_scraper.py</text>
+
+  <!-- Stage 2: Preprocessing -->
+  <rect x="290" y="100" width="220" height="130" rx="12" fill="url(#g2)"/>
+  <text x="400" y="128" text-anchor="middle" class="stage">2. Preprocessing</text>
+  <text x="400" y="155" text-anchor="middle" class="item">Merge flats + houses</text>
+  <text x="400" y="175" text-anchor="middle" class="item">Cleaning · Standardization</text>
+  <text x="400" y="195" text-anchor="middle" class="item">Outlier treatment (IQR)</text>
+  <text x="400" y="215" text-anchor="middle" class="item">Missing value imputation</text>
+
+  <!-- Stage 3: EDA -->
+  <rect x="560" y="100" width="220" height="130" rx="12" fill="url(#g3)"/>
+  <text x="670" y="128" text-anchor="middle" class="stage">3. EDA</text>
+  <text x="670" y="155" text-anchor="middle" class="item">Univariate · Multivariate</text>
+  <text x="670" y="175" text-anchor="middle" class="item">Pandas Profiling</text>
+  <text x="670" y="195" text-anchor="middle" class="item">Plotly · Seaborn · Matplotlib</text>
+  <text x="670" y="215" text-anchor="middle" class="item">Geospatial maps</text>
+
+  <!-- Stage 4: Feature Eng -->
+  <rect x="830" y="100" width="220" height="130" rx="12" fill="url(#g4)"/>
+  <text x="940" y="128" text-anchor="middle" class="stage">4. Feature Engineering</text>
+  <text x="940" y="155" text-anchor="middle" class="item">Luxury · Floor · Age cats</text>
+  <text x="940" y="175" text-anchor="middle" class="item">Price/sqft, area ratios</text>
+  <text x="940" y="195" text-anchor="middle" class="item">Sector encoding</text>
+  <text x="940" y="215" text-anchor="middle" class="item">Feature selection</text>
+
+  <!-- Stage 5: Modeling -->
+  <rect x="170" y="300" width="240" height="150" rx="12" fill="url(#g1)"/>
+  <text x="290" y="328" text-anchor="middle" class="stage">5. ML Modeling</text>
+  <text x="290" y="358" text-anchor="middle" class="item">Baseline: SVR (RBF)</text>
+  <text x="290" y="378" text-anchor="middle" class="item">Linear · Ridge · Lasso</text>
+  <text x="290" y="398" text-anchor="middle" class="item">RandomForest · XGBoost</text>
+  <text x="290" y="418" text-anchor="middle" class="item">10-fold CV · log1p target</text>
+  <text x="290" y="438" text-anchor="middle" class="item">Pipeline → pipeline.pkl</text>
+
+  <!-- Stage 6: Insights -->
+  <rect x="450" y="300" width="220" height="150" rx="12" fill="url(#g3)"/>
+  <text x="560" y="328" text-anchor="middle" class="stage">6. Insights</text>
+  <text x="560" y="358" text-anchor="middle" class="item">Feature importance</text>
+  <text x="560" y="378" text-anchor="middle" class="item">Sector price patterns</text>
+  <text x="560" y="398" text-anchor="middle" class="item">Sector geo coordinates</text>
+  <text x="560" y="418" text-anchor="middle" class="item">Market trend analysis</text>
+  <text x="560" y="438" text-anchor="middle" class="item">data_viz1.csv · df.pkl</text>
+
+  <!-- Stage 7: Recommender -->
+  <rect x="710" y="300" width="240" height="150" rx="12" fill="url(#g4)"/>
+  <text x="830" y="328" text-anchor="middle" class="stage">7. Recommender</text>
+  <text x="830" y="358" text-anchor="middle" class="item">Content-based filtering</text>
+  <text x="830" y="378" text-anchor="middle" class="item">TF-IDF + Cosine Similarity</text>
+  <text x="830" y="398" text-anchor="middle" class="item">Facilities · Price · Location</text>
+  <text x="830" y="418" text-anchor="middle" class="item">cosine_sim1/2/3.pkl</text>
+  <text x="830" y="438" text-anchor="middle" class="item">location_distance.pkl</text>
+
+  <!-- Stage 8: Streamlit App -->
+  <rect x="180" y="520" width="740" height="160" rx="14" fill="url(#g5)"/>
+  <text x="550" y="552" text-anchor="middle" class="stage" font-size="18">8. Streamlit Web Application</text>
+
+  <rect x="210" y="575" width="200" height="85" rx="10" fill="#ffffff22" stroke="#fff"/>
+  <text x="310" y="600" text-anchor="middle" class="item" font-weight="700">Home.py</text>
+  <text x="310" y="622" text-anchor="middle" class="item">Landing page</text>
+  <text x="310" y="640" text-anchor="middle" class="item">Navigation</text>
+
+  <rect x="430" y="575" width="220" height="85" rx="10" fill="#ffffff22" stroke="#fff"/>
+  <text x="540" y="600" text-anchor="middle" class="item" font-weight="700">1_Price_Predictor.py</text>
+  <text x="540" y="622" text-anchor="middle" class="item">Predict property price</text>
+  <text x="540" y="640" text-anchor="middle" class="item">pipeline.pkl + df.pkl</text>
+
+  <rect x="670" y="575" width="220" height="85" rx="10" fill="#ffffff22" stroke="#fff"/>
+  <text x="780" y="600" text-anchor="middle" class="item" font-weight="700">2_Analysis_App.py</text>
+  <text x="780" y="622" text-anchor="middle" class="item">3_Recommend_Appartments.py</text>
+  <text x="780" y="640" text-anchor="middle" class="item">Maps · Charts · Similar units</text>
+
+  <!-- Arrows row 1 -->
+  <line x1="240" y1="165" x2="290" y2="165" class="ln" marker-end="url(#arrow)"/>
+  <line x1="510" y1="165" x2="560" y2="165" class="ln" marker-end="url(#arrow)"/>
+  <line x1="780" y1="165" x2="830" y2="165" class="ln" marker-end="url(#arrow)"/>
+
+  <!-- Arrows row 1 -> row 2 -->
+  <path d="M940,230 C940,265 290,265 290,300" class="ln" marker-end="url(#arrow)"/>
+  <line x1="410" y1="375" x2="450" y2="375" class="ln" marker-end="url(#arrow)"/>
+  <line x1="670" y1="375" x2="710" y2="375" class="ln" marker-end="url(#arrow)"/>
+
+  <!-- Row 2 -> App -->
+  <path d="M290,450 C290,485 410,485 410,520" class="ln" marker-end="url(#arrow)"/>
+  <path d="M560,450 L560,520" class="ln" marker-end="url(#arrow)"/>
+  <path d="M830,450 C830,485 710,485 710,520" class="ln" marker-end="url(#arrow)"/>
+
+  <text x="550" y="710" text-anchor="middle" font-size="12" fill="#64748b">Python · pandas · scikit-learn · Streamlit · Plotly · Seaborn</text>
+</svg>

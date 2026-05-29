@@ -9,6 +9,14 @@ Visualization
 
 # Real Estate Analytics Platform - Gurgaon Property Price Prediction
 
+## System Architecture
+
+<div align="center">
+
+![Architecture Diagram](architecture.svg)
+
+</div>
+
 ## Project Overview
 
 This is a comprehensive **Data Science & Machine Learning Capstone Project** focused on analyzing and predicting real estate property prices in Gurgaon, India. The project encompasses data collection, exploratory data analysis (EDA), feature engineering, machine learning model development, and building a recommendation system for properties.
@@ -357,6 +365,58 @@ Use the feature-selected datasets directly:
 import pandas as pd
 df = pd.read_csv('gurgaon_properties_post_feature_selection_v2.csv')
 ```
+
+---
+
+## Running the Streamlit App (Quick Start)
+
+### Prerequisites
+- Python 3.9+
+- pip / virtualenv
+
+### Setup & Run (Windows PowerShell)
+```powershell
+# 1. Clone the repository
+git clone https://github.com/Abhishek9124/Real_Estate_Analytics_Platform.git
+cd Real_Estate_Analytics_Platform
+
+# 2. Create and activate virtual environment
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+
+# 3. Install dependencies
+pip install -r requirements.txt
+
+# 4. Launch the Streamlit app
+streamlit run pages/Home.py
+```
+
+### Setup & Run (macOS / Linux)
+```bash
+git clone https://github.com/Abhishek9124/Real_Estate_Analytics_Platform.git
+cd Real_Estate_Analytics_Platform
+
+python3 -m venv venv
+source venv/bin/activate
+
+pip install -r requirements.txt
+
+streamlit run pages/Home.py
+```
+
+### Running Individual Pages
+```bash
+streamlit run pages/1_Price_Predictor.py
+streamlit run pages/2_Analysis_App.py
+streamlit run pages/3_Recommend_Appartments.py
+```
+
+### Running the Jupyter Notebooks
+```bash
+pip install jupyter
+jupyter notebook
+```
+The app will be available at **http://localhost:8501**
 
 ---
 
