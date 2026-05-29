@@ -8,14 +8,29 @@ st.set_page_config(page_title="Recommend Appartments", layout="wide")
 
 st.title('🏠 Property Recommender System')
 
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+
+def _find(name):
+    for base in (ROOT, HERE):
+        p = os.path.join(base, name)
+        if os.path.exists(p):
+            return p
+    return None
+
 try:
-    location_df = pickle.load(open('location_distance.pkl','rb'))
-    cosine_sim1 = pickle.load(open('cosine_sim1.pkl','rb'))
-    cosine_sim2 = pickle.load(open('cosine_sim2.pkl','rb'))
-    cosine_sim3 = pickle.load(open('cosine_sim3.pkl','rb'))
-    
+    paths = {n: _find(n) for n in ('location_distance.pkl','cosine_sim1.pkl','cosine_sim2.pkl','cosine_sim3.pkl')}
+    missing = [n for n,p in paths.items() if p is None]
+    if missing:
+        raise FileNotFoundError(f"Missing files: {missing}")
+
+    location_df = pickle.load(open(paths['location_distance.pkl'],'rb'))
+    cosine_sim1 = pickle.load(open(paths['cosine_sim1.pkl'],'rb'))
+    cosine_sim2 = pickle.load(open(paths['cosine_sim2.pkl'],'rb'))
+    cosine_sim3 = pickle.load(open(paths['cosine_sim3.pkl'],'rb'))
+
     cosine_sim_matrix = 0.5 * cosine_sim1 + 0.8 * cosine_sim2 + 1 * cosine_sim3
-    
+
     st.success("✅ Property data loaded successfully from pickle files.")
 
 except Exception as e:

@@ -1,25 +1,45 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go # Added for custom map layers
+import plotly.graph_objects as go
 import pickle
 import json
-from wordcloud import WordCloud
+import os
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Set page configuration
-st.set_page_config(page_title="Plotting Demo", layout="wide")
+try:
+    from wordcloud import WordCloud
+    _WORDCLOUD_OK = True
+except Exception:
+    _WORDCLOUD_OK = False
 
+st.set_page_config(page_title="Plotting Demo", layout="wide")
 st.title('🏠 Real Estate Analytics')
 
-# --- Data Loading ---
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(HERE)
+
+def _find(name):
+    for base in (ROOT, HERE):
+        p = os.path.join(base, name)
+        if os.path.exists(p):
+            return p
+    return None
+
+csv_path = _find('data_viz1.csv')
+ft_path = _find('feature_text.pkl')
+
+if not csv_path or not ft_path:
+    st.error("Required files ('data_viz1.csv' or 'feature_text.pkl') not found at project root or pages/.")
+    st.stop()
+
 try:
-    new_df = pd.read_csv('data_viz1.csv')
-    with open('feature_text.pkl', 'rb') as f:
+    new_df = pd.read_csv(csv_path)
+    with open(ft_path, 'rb') as f:
         feature_text = pickle.load(f)
-except FileNotFoundError:
-    st.error("Error: Required data files ('data_viz1.csv' or 'feature_text.pkl') not found.")
+except Exception as e:
+    st.error(f"Failed to load analytics data: {e}")
     st.stop()
 
 group_df = new_df.groupby('sector').mean(numeric_only=True)[['price','price_per_sqft','built_up_area','latitude','longitude']]
@@ -35,16 +55,21 @@ st.plotly_chart(fig, use_container_width=True)
 # --- 2. Features Wordcloud ---
 st.header('☁️ Features Wordcloud')
 
-wordcloud = WordCloud(width = 800, height = 800,
-                      background_color ='black',
-                      stopwords = set(['s']),
-                      min_font_size = 10).generate(feature_text)
-
-fig_wc, ax_wc = plt.subplots(figsize = (8, 8), facecolor = None)
-ax_wc.imshow(wordcloud, interpolation='bilinear')
-ax_wc.axis("off")
-plt.tight_layout(pad = 0)
-st.pyplot(fig_wc)
+if _WORDCLOUD_OK:
+    try:
+        wordcloud = WordCloud(width=800, height=800,
+                              background_color='black',
+                              stopwords=set(['s']),
+                              min_font_size=10).generate(feature_text)
+        fig_wc, ax_wc = plt.subplots(figsize=(8, 8), facecolor=None)
+        ax_wc.imshow(wordcloud, interpolation='bilinear')
+        ax_wc.axis("off")
+        plt.tight_layout(pad=0)
+        st.pyplot(fig_wc)
+    except Exception as e:
+        st.warning(f"Wordcloud rendering failed: {e}")
+else:
+    st.info("Install `wordcloud` (pip install wordcloud) to view the features wordcloud.")
 
 # --- 3. Area Vs Price Scatter Plot ---
 st.header('📈 Area Vs Price')
@@ -146,11 +171,15 @@ map_data = new_df.groupby('sector').agg(
 
 # Attempt to load GeoJSON for polygon rendering
 geojson_data = None
-try:
-    with open('sectors.geojson', 'r') as f:
-        geojson_data = json.load(f)
-except FileNotFoundError:
-    st.warning("⚠️ 'sectors.geojson' file not found. Displaying points instead. To see sector polygons, please add a 'sectors.geojson' file to your directory.")
+geo_path = _find('sectors.geojson')
+if geo_path:
+    try:
+        with open(geo_path, 'r') as f:
+            geojson_data = json.load(f)
+    except Exception as e:
+        st.warning(f"sectors.geojson failed to parse: {e}. Showing points instead.")
+else:
+    st.info("ℹ️ 'sectors.geojson' not found — showing points instead of polygons.")
 
 if geojson_data:
     # TRUE CHOROPLETH: Uses GeoJSON to draw polygons

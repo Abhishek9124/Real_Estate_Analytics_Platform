@@ -9,6 +9,20 @@ Visualization
 
 # Real Estate Analytics Platform - Gurgaon Property Price Prediction
 
+## Live UI Preview
+
+<div align="center">
+
+![Streamlit UI - Home](ui_home.png)
+
+*Home page — feature cards, metrics, and tech stack at a glance.*
+
+![Streamlit UI - Price Predictor](ui_predictor.png)
+
+*Price Predictor — input property attributes and get an estimated price range.*
+
+</div>
+
 ## System Architecture
 
 <div align="center">

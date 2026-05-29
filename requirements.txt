@@ -9,3 +9,4 @@ xgboost
 category_encoders
 scipy
 joblib
+wordcloud
