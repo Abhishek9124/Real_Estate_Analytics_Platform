@@ -387,7 +387,15 @@ python -m venv venv
 # 3. Install dependencies
 pip install -r requirements.txt
 
-# 4. Launch the Streamlit app
+# 4. Generate model artifacts (.pkl files) by running the notebooks
+#    The Streamlit app loads pipeline.pkl, df.pkl, cosine_sim*.pkl, etc.
+#    which are produced by the notebooks listed in "Running the Complete Pipeline".
+jupyter notebook
+# Run, in order: feature-selection-and-feature-engineering.ipynb,
+# model-selection.ipynb, and recommender-system.ipynb to generate the pkl files,
+# then move them into the pages/ directory.
+
+# 5. Launch the Streamlit app
 streamlit run pages/Home.py
 ```
 
